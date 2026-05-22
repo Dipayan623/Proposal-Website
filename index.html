@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hey You 🌸</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Sacramento&display=swap" rel="stylesheet">
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+        body{
+            font-family:'Poppins',sans-serif;
+            min-height:100vh;
+            overflow:hidden;
+            background:linear-gradient(
+                180deg,
+                #1b1033 0%,
+                #2f1757 50%,
+                #47246e 100%
+            );
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            position:relative;
+            color:white;
+        }
+
+        /* Stars */
+
+        .stars{
+            position:absolute;
+            inset:0;
+            overflow:hidden;
+            z-index:0;
+            pointer-events:none;
+        }
+
+        .star{
+            position:absolute;
+            width:3px;
+            height:3px;
+            border-radius:50%;
+            background:white;
+            animation:twinkle 3s infinite ease-in-out;
+        }
+
+        @keyframes twinkle{
+
+            0%,100%{
+                opacity:0.2;
+                transform:scale(1);
+            }
+
+            50%{
+                opacity:1;
+                transform:scale(1.8);
+            }
+
+        }
+
+        /* Shooting Stars */
+
+        .shooting-star{
+            position:absolute;
+            width:220px;
+            height:2px;
+            background:linear-gradient(
+                to left,
+                white,
+                transparent
+            );
+
+            border-radius:999px;
+            transform:rotate(25deg);
+            opacity:0;
+            animation:shoot linear forwards;
+        }
+
+        @keyframes shoot{
+
+            0%{
+                transform:
+                translate(0,0)
+                rotate(25deg);
+                opacity:0;
+            }
+
+            10%{
+                opacity:1;
+            }
+
+            100%{
+                transform:
+                translate(500px,500px)
+                rotate(25deg);
+
+                opacity:0;
+            }
+
+        }
+
+        /* Moon */
+
+        .moon{
+            position:absolute;
+            top:80px;
+            left:120px;
+            font-size:2.8rem;
+            opacity:0.9;
+            animation:float 4s ease-in-out infinite;
+        }
+
+        @keyframes float{
+
+            0%,100%{
+                transform:translateY(0px);
+            }
+
+            50%{
+                transform:translateY(-10px);
+            }
+
+        }
+
+        /* Main Content */
+
+        .container{
+            position:relative;
+            z-index:2;
+            width:90%;
+            max-width:700px;
+            padding:40px 25px;
+            text-align:center;
+            animation:fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn{
+
+            from{
+                opacity:0;
+                transform:translateY(20px);
+            }
+
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+
+        }
+
+        h1{
+            font-family:'Sacramento',cursive;
+            font-size:6rem;
+            font-weight:400;
+            margin-bottom:10px;
+        }
+
+        .subtitle{
+            font-size:1.15rem;
+            line-height:2;
+            opacity:0.92;
+            margin-bottom:40px;
+        }
+
+        .tiny{
+            margin-top:18px;
+            font-size:0.95rem;
+            opacity:0.72;
+        }
+
+        /* Button */
+
+        .btn{
+            text-decoration:none;
+        }
+
+        button{
+            border:none;
+            outline:none;
+            padding:16px 34px;
+            border-radius:999px;
+            background:white;
+            color:#5f2e92;
+            font-size:1rem;
+            font-weight:600;
+            cursor:pointer;
+            transition:0.35s ease;
+            box-shadow:0 10px 30px rgba(0,0,0,0.18);
+        }
+
+        button:hover{
+            transform:
+            translateY(-4px)
+            scale(1.03);
+        }
+
+        /* Glow Effects */
+
+        .glow{
+            position:absolute;
+            width:350px;
+            height:350px;
+            border-radius:50%;
+            background:rgba(255,255,255,0.05);
+            filter:blur(100px);
+            z-index:1;
+        }
+
+        .glow1{
+            top:-100px;
+            left:-100px;
+        }
+
+        .glow2{
+            bottom:-120px;
+            right:-120px;
+        }
+
+        /* Mobile */
+
+        @media(max-width:768px){
+            h1{
+                font-size:4.3rem;
+            }
+            .subtitle{
+                font-size:1rem;
+            }
+            .moon{
+                left:40px;
+                top:60px;
+                font-size:2.2rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Stars -->
+    <div class="stars"></div>
+    <!-- Glow -->
+    <div class="glow glow1"></div>
+    <div class="glow glow2"></div>
+    <!-- Moon -->
+    <div class="moon">🌙</div>
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Hey You ✨</h1>
+        <p class="subtitle">
+
+            Okay so...<br>
+
+            This might be slightly unexpected.<br><br>
+
+            but I made something tiny<br>
+            for someone named Sayani<br>
+            who's been on my mind lately 🌸
+
+        </p>
+
+        <a href="whyimadethis.html" class="btn">
+            <button>
+
+                Okay, I'm curious 👀
+
+            </button>
+        </a>
+        <p class="tiny">
+
+            (Please pretend I'm not nervous rn 😭)
+
+        </p>
+    </div>
+
+    <script>
+        // Stars
+        const starsContainer =
+        document.querySelector(".stars");
+        for(let i = 0; i < 130; i++){
+            const star =
+            document.createElement("div");
+            star.classList.add("star");
+            star.style.left =
+            Math.random() * 100 + "%";
+            star.style.top =
+            Math.random() * 100 + "%";
+            star.style.animationDelay =
+            Math.random() * 3 + "s";
+            starsContainer.appendChild(star);
+        }
+
+        // Shooting Stars
+
+        function createShootingStar(){
+            const star =
+            document.createElement("div");
+            star.classList.add("shooting-star");
+            // Random Positions
+            const startX =
+            Math.random() *
+            window.innerWidth * 0.3;
+            const startY =
+            Math.random() *
+            window.innerHeight * 0.3;
+            star.style.left =
+            startX + "px";
+            star.style.top =
+            startY + "px";
+            // Random Size
+            const size =
+            Math.random() * 120 + 120;
+            star.style.width =
+            size + "px";
+            // Random Speed
+            const duration =
+            Math.random() * 2 + 2;
+            star.style.animationDuration =
+            duration + "s";
+            document.body.appendChild(star);
+            setTimeout(() => {
+                star.remove();
+            }, duration * 1000);
+        }
+        // Random Intervals
+        setInterval(() => {
+            createShootingStar();
+        }, 2500);
+    </script>
+</body>
+</html>

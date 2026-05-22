@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Last Thing 🌸</title>
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Sacramento&display=swap" rel="stylesheet">
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+
+            font-family:'Poppins',sans-serif;
+
+            min-height:100vh;
+
+            overflow-x:hidden;
+            overflow-y:auto;
+
+            background:linear-gradient(
+                180deg,
+                #170d2f 0%,
+                #2b1450 50%,
+                #44206b 100%
+            );
+
+            color:white;
+
+            position:relative;
+        }
+
+        /* Stars */
+
+        .stars{
+            position:fixed;
+            inset:0;
+
+            overflow:hidden;
+
+            pointer-events:none;
+
+            z-index:0;
+        }
+
+        .star{
+            position:absolute;
+
+            width:3px;
+            height:3px;
+
+            border-radius:50%;
+
+            background:white;
+
+            animation:twinkle 3s infinite ease-in-out;
+        }
+
+        @keyframes twinkle{
+
+            0%,100%{
+                opacity:0.2;
+                transform:scale(1);
+            }
+
+            50%{
+                opacity:1;
+                transform:scale(1.8);
+            }
+
+        }
+
+        /* Shooting Stars */
+
+        .shooting-star{
+            position:absolute;
+
+            width:220px;
+            height:2px;
+
+            background:linear-gradient(
+                to left,
+                white,
+                transparent
+            );
+
+            border-radius:999px;
+
+            transform:rotate(25deg);
+
+            opacity:0;
+
+            animation:shoot linear forwards;
+        }
+
+        @keyframes shoot{
+
+            0%{
+                transform:
+                translate(0,0)
+                rotate(25deg);
+
+                opacity:0;
+            }
+
+            10%{
+                opacity:1;
+            }
+
+            100%{
+                transform:
+                translate(500px,500px)
+                rotate(25deg);
+
+                opacity:0;
+            }
+
+        }
+
+        /* Glow */
+
+        .glow{
+
+            position:absolute;
+
+            width:320px;
+            height:320px;
+
+            border-radius:50%;
+
+            background:rgba(255,255,255,0.05);
+
+            filter:blur(100px);
+
+            z-index:1;
+        }
+
+        .glow1{
+            top:-100px;
+            left:-100px;
+        }
+
+        .glow2{
+            bottom:-100px;
+            right:-100px;
+        }
+
+        /* Main */
+
+        section{
+
+            min-height:100vh;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            flex-direction:column;
+
+            padding:100px 20px 80px;
+
+            position:relative;
+
+            z-index:2;
+        }
+
+        .back-btn{
+
+            position:absolute;
+
+            top:30px;
+            left:30px;
+
+            text-decoration:none;
+
+            color:white;
+
+            opacity:0.8;
+
+            transition:0.3s ease;
+        }
+
+        .back-btn:hover{
+            opacity:1;
+        }
+
+        /* Floating Flower */
+
+        .floating{
+
+            position:absolute;
+
+            top:70px;
+            right:80px;
+
+            font-size:2.8rem;
+
+            animation:float 4s ease-in-out infinite;
+        }
+
+        @keyframes float{
+
+            0%,100%{
+                transform:translateY(0px);
+            }
+
+            50%{
+                transform:translateY(-10px);
+            }
+
+        }
+
+        /* Final Box */
+
+        .final-box{
+
+            width:92%;
+            max-width:950px;
+
+            background:rgba(255,255,255,0.08);
+
+            border:1px solid rgba(255,255,255,0.12);
+
+            backdrop-filter:blur(10px);
+
+            border-radius:35px;
+
+            padding:55px 35px;
+
+            text-align:center;
+
+            animation:fadeIn 1.2s ease;
+        }
+
+        @keyframes fadeIn{
+
+            from{
+                opacity:0;
+                transform:translateY(25px);
+            }
+
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+
+        }
+
+        /* Heading */
+
+        h1{
+            font-family:'Sacramento',cursive;
+            font-size:5rem;
+            margin-bottom:15px;
+        }
+
+        .text{
+            line-height:2;
+            font-size:1.08rem;
+            opacity:0.95;
+        }
+
+        .highlight{
+            color:#ffd5f0;
+            font-weight:500;
+        }
+
+        /* Buttons */
+        .btns{
+            margin-top:40px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            gap:18px;
+            flex-wrap:wrap;
+            position:relative;
+            min-height:120px;
+        }
+
+        button{
+            border:none;
+            outline:none;
+            padding:15px 28px;
+            border-radius:999px;
+            font-size:1rem;
+            font-weight:600;
+            cursor:pointer;
+            transition:0.3s ease;
+        }
+
+        .yes-btn{
+            background:white;
+            color:#5e2c91;
+        }
+
+        .yes-btn:hover{
+            transform:
+            translateY(-4px)
+            scale(1.04);
+        }
+
+        .no-btn{
+            background:rgba(255,255,255,0.12);
+            color:white;
+            display:inline-block;
+            border:1px solid rgba(255,255,255,0.15);
+            position:relative;
+        }
+
+        .restart-btn{
+            background:rgba(255,255,255,0.08);
+            color:white;
+            border:1px solid rgba(255,255,255,0.12);
+            margin-top:10px;
+        }
+
+        .restart-btn:hover{
+            transform:
+            translateY(-4px)
+            scale(1.03);
+        }
+        /* Reply */
+
+        .reply{
+            margin-top:35px;
+            opacity:0;
+            transform:translateY(15px);
+            transition:0.6s ease;
+            line-height:1.9;
+            font-size:1.02rem;
+        }
+
+        .reply.show{
+            opacity:1;
+            transform:translateY(0);
+        }
+
+        /* Mobile */
+
+        @media(max-width:768px){
+
+            h1{
+                font-size:3.7rem;
+            }
+
+            .text{
+                font-size:1rem;
+            }
+
+            .floating{
+                right:25px;
+                top:55px;
+                font-size:2.2rem;
+            }
+
+            .final-box{
+                padding:45px 22px;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="glow glow1"></div>
+    <div class="glow glow2"></div>
+    <div class="floating">🌸</div>
+
+    <section>
+        <a href="game.html"
+        class="back-btn">
+
+            ← back
+
+        </a>
+        <div class="final-box">
+
+            <h1>Okay, so... ✨</h1>
+
+            <p class="text">
+
+                I know we're still getting to know each other.<br><br>
+
+                but honestly?<br>
+
+                I genuinely enjoy talking to you.<br><br>
+
+                Somehow your messages became part of my day<br>
+                a little faster than expected 😭<br><br>
+
+                and maybe this sounds slightly crazy...<br>
+
+                But I think I'd really like to<br>
+
+                <span class="highlight">
+
+                    See where this little thing between us goes 🌙
+
+                </span>
+
+            </p>
+
+            <!-- Buttons -->
+
+            <div class="btns">
+
+                <button class="yes-btn"
+                onclick="showReply()">
+
+                    Maybe we should make more memories together ✨
+
+                </button>
+
+                <button class="no-btn"
+                id="moveBtn">
+
+                    hmm idk 😭
+
+                </button>
+
+            </div>
+
+            <!-- Reply -->
+
+            <div class="reply"
+            id="reply">
+
+                Okay now I'm smiling at my screen like an idiot 🌸<br><br>
+
+                and honestly?<br>
+
+                Somewhere between neurons firing<br>
+                and codes compiling,<br>
+                you became a constant thought 🌸
+
+            </div>
+
+            <!-- Restart Button -->
+            <div style="margin-top:30px;">
+                <a href="index.html">
+                    <button class="restart-btn">
+
+                        Start over 🌙
+                    
+                    </button>
+                </a>
+            </div>
+        </div>
+    </section>
+    <script>
+        // Stars
+        const starsContainer =
+        document.querySelector(".stars");
+        for(let i = 0; i < 130; i++){
+            const star =
+            document.createElement("div");
+            star.classList.add("star");
+            star.style.left =
+            Math.random() * 100 + "%";
+            star.style.top =
+            Math.random() * 100 + "%";
+            star.style.animationDelay =
+            Math.random() * 3 + "s";
+            starsContainer.appendChild(star);
+        }
+
+        // Shooting Stars
+
+        function createShootingStar(){
+            const star =
+            document.createElement("div");
+            star.classList.add("shooting-star");
+            const startX =
+            Math.random() *
+            window.innerWidth * 0.7;
+            const startY =
+            Math.random() *
+            window.innerHeight * 0.3;
+            star.style.left =
+            startX + "px";
+            star.style.top =
+            startY + "px";
+            const size =
+            Math.random() * 120 + 120;
+            star.style.width =
+            size + "px";
+            const duration =
+            Math.random() * 2 + 2;
+            star.style.animationDuration =
+            duration + "s";
+            document.body.appendChild(star);
+            setTimeout(() => {
+                star.remove();
+            }, duration * 1000);
+        }
+
+        setInterval(() => {
+            createShootingStar();
+        }, 2500);
+
+        // Reply
+
+        function showReply(){
+            document
+            .getElementById("reply")
+            .classList.add("show");
+        }
+
+        // Moving Button
+
+        const moveBtn =
+        document.getElementById("moveBtn");
+        const texts = [
+            "nice try 😭",
+            "wrong answer detected",
+            "retry recommended 👀",
+            "the developer disagrees",
+            "okay but what if yes",
+            "that option feels illegal",
+            "hmm... suspicious choice",
+            "be serious for a sec 🌸",
+            "nah try the other one",
+            "this button is broken fr"
+        ];
+
+        let textIndex = 0;
+    moveBtn.addEventListener("mouseover", () => {
+
+    // Small playful movement
+
+    const moveX =
+    (Math.random() * 120) - 60;
+    const moveY =
+    (Math.random() * 120) - 60;
+
+    // Apply smooth movement
+    moveBtn.style.transform =
+    `translate(${moveX}px, ${moveY}px)`;
+
+    // Change text
+    textIndex++;
+    if(textIndex >= texts.length){
+        textIndex = 0;
+    }
+    moveBtn.innerText =
+    texts[textIndex];
+});
+
+    </script>
+</body>
+</html>

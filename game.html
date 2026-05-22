@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mystery Boxes 🎁</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Sacramento&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      min-height:100vh;
+      overflow-x:hidden;
+      background:linear-gradient(
+        180deg,
+        #180d31 0%,
+        #2a1450 50%,
+        #43206a 100%
+      );
+      color:white;
+      position:relative;
+    }
+
+    /* Stars */
+
+    .stars{
+      position:fixed;
+      inset:0;
+      overflow:hidden;
+      z-index:0;
+      pointer-events:none;
+    }
+
+    .star{
+      position:absolute;
+      width:3px;
+      height:3px;
+      border-radius:50%;
+      background:white;
+      animation:twinkle 3s infinite ease-in-out;
+    }
+
+    @keyframes twinkle{
+
+      0%,100%{
+        opacity:0.2;
+        transform:scale(1);
+      }
+
+      50%{
+        opacity:1;
+        transform:scale(1.8);
+      }
+
+    }
+
+    /* Main */
+
+    section{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      padding:100px 20px 60px;
+      position:relative;
+      z-index:2;
+    }
+
+    .back-btn{
+      position:absolute;
+      top:30px;
+      left:30px;
+      text-decoration:none;
+      color:white;
+      opacity:0.8;
+      transition:0.3s ease;
+    }
+
+    .back-btn:hover{
+      opacity:1;
+    }
+
+    h1{
+      font-family:'Sacramento',cursive;
+      font-size:4.7rem;
+      margin-bottom:10px;
+      text-align:center;
+    }
+
+    .subtitle{
+      text-align:center;
+      opacity:0.88;
+      line-height:1.8;
+      margin-bottom:50px;
+      font-size:1.05rem;
+    }
+
+    /* Gift Grid */
+
+    .gift-grid{
+      width:100%;
+      max-width:900px;
+
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+
+      gap:28px;
+    }
+
+    /* Flip Card */
+
+    .gift-box{
+      height:240px;
+      perspective:1000px;
+      cursor:pointer;
+    }
+
+    .gift-inner{
+      position:relative;
+      width:100%;
+      height:100%;
+
+      transition:transform 0.8s;
+
+      transform-style:preserve-3d;
+    }
+
+    .gift-box.flipped .gift-inner{
+      transform:rotateY(180deg);
+    }
+
+    .gift-front,
+    .gift-back{
+
+      position:absolute;
+      width:100%;
+      height:100%;
+
+      border-radius:28px;
+
+      backface-visibility:hidden;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      text-align:center;
+
+      padding:20px;
+
+      background:rgba(255,255,255,0.08);
+
+      border:1px solid rgba(255,255,255,0.12);
+
+      backdrop-filter:blur(10px);
+    }
+
+    .gift-front{
+      font-size:4rem;
+      transition:0.3s ease;
+    }
+
+    .gift-box:hover .gift-front{
+      transform:scale(1.08);
+    }
+
+    .gift-back{
+      transform:rotateY(180deg);
+
+      line-height:1.8;
+      font-size:1rem;
+    }
+
+    /* Final Message */
+
+    .secret-message{
+      margin-top:45px;
+
+      background:rgba(255,255,255,0.07);
+
+      border:1px solid rgba(255,255,255,0.1);
+
+      border-radius:24px;
+
+      padding:22px 28px;
+
+      opacity:0;
+
+      transform:translateY(20px);
+
+      transition:0.6s ease;
+
+      text-align:center;
+
+      line-height:1.8;
+    }
+
+    .secret-message.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* Button */
+
+    .btn-wrap{
+      margin-top:40px;
+    }
+
+    button{
+      border:none;
+      outline:none;
+
+      padding:15px 32px;
+
+      border-radius:999px;
+
+      background:white;
+      color:#5f2d92;
+
+      font-size:1rem;
+      font-weight:600;
+
+      cursor:pointer;
+
+      transition:0.35s ease;
+    }
+
+    button:hover{
+      transform:translateY(-4px) scale(1.03);
+    }
+
+    /* Floating Gift */
+
+    .gift-float{
+      position:absolute;
+      top:70px;
+      right:90px;
+
+      font-size:3rem;
+
+      animation:float 4s ease-in-out infinite;
+    }
+
+    @keyframes float{
+
+      0%,100%{
+        transform:translateY(0px);
+      }
+
+      50%{
+        transform:translateY(-12px);
+      }
+
+    }
+
+    @media(max-width:768px){
+
+      h1{
+        font-size:3.5rem;
+      }
+
+      .subtitle{
+        font-size:0.98rem;
+      }
+
+      .gift-float{
+        right:30px;
+        top:60px;
+        font-size:2.3rem;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Stars -->
+  <div class="stars"></div>
+
+  <!-- Floating Gift -->
+  <div class="gift-float">🎀</div>
+
+  <section>
+
+    <!-- Back -->
+    <a href="risk.html" class="back-btn">
+      ← back
+    </a>
+
+    <!-- Heading -->
+    <h1>Mystery Boxes 🎁</h1>
+
+    <p class="subtitle">
+      Each box contains either:<br>
+      A Compliment,<br> An Emotional Damage,<br>
+      or A Mild Embarrassment 😭
+    </p>
+
+    <!-- Grid -->
+    <div class="gift-grid">
+
+      <!-- Box -->
+
+      <div class="gift-box"
+      onclick="flipCard(this, 'You somehow became my favorite notification ✨')">
+
+        <div class="gift-inner">
+
+          <div class="gift-front">
+            🎁
+          </div>
+
+          <div class="gift-back"></div>
+
+        </div>
+
+      </div>
+
+      <!-- Box -->
+
+      <div class="gift-box"
+      onclick="flipCard(this, 'I support your future dance performances btw 💃')">
+
+        <div class="gift-inner">
+
+          <div class="gift-front">
+            🎁
+          </div>
+
+          <div class="gift-back"></div>
+
+        </div>
+
+      </div>
+
+      <!-- Box -->
+
+      <div class="gift-box"
+      onclick="flipCard(this, 'You are suspiciously comforting to talk to😌')">
+
+        <div class="gift-inner">
+
+          <div class="gift-front">
+            🎁
+          </div>
+
+          <div class="gift-back"></div>
+
+        </div>
+
+      </div>
+
+      <!-- Box -->
+
+      <div class="gift-box"
+      onclick="flipCard(this, 'This is either cute or deeply embarrassing honestly')">
+
+        <div class="gift-inner">
+
+          <div class="gift-front">
+            🎁
+          </div>
+
+          <div class="gift-back"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Secret Message -->
+
+    <div class="secret-message" id="secretMessage">
+
+      Okay fine...<br>
+
+      This website is proof you’ve been occupying<br> my brain a little more than i expected 🌸
+
+    </div>
+
+    <!-- Button -->
+
+    <div class="btn-wrap">
+
+      <a href="final.html">
+        <button>
+          One last thing ✨
+        </button>
+      </a>
+
+    </div>
+
+  </section>
+
+  <script>
+
+    // Stars
+
+    const starsContainer = document.querySelector(".stars");
+
+    for(let i = 0; i < 130; i++){
+
+      const star = document.createElement("div");
+
+      star.classList.add("star");
+
+      star.style.left = Math.random() * 100 + "%";
+      star.style.top = Math.random() * 100 + "%";
+
+      star.style.animationDelay = Math.random() * 3 + "s";
+
+      starsContainer.appendChild(star);
+
+    }
+
+    // Flip Cards
+
+    let openedCards = 0;
+
+    function flipCard(box, message){
+
+      if(box.classList.contains("flipped")) return;
+
+      box.querySelector(".gift-back").innerHTML = message;
+
+      box.classList.add("flipped");
+
+      openedCards++;
+
+      if(openedCards >= 4){
+
+        document
+        .getElementById("secretMessage")
+        .classList.add("show");
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>
